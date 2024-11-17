@@ -1,4 +1,4 @@
-package io.github.vkindl.nbaplayers.ui.theme
+package io.github.vkindl.nbaplayers.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

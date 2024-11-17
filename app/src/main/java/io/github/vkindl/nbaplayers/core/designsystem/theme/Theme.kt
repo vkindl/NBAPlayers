@@ -1,4 +1,4 @@
-package io.github.vkindl.nbaplayers.ui.theme
+package io.github.vkindl.nbaplayers.core.designsystem.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -33,7 +33,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun NBATheme(
+fun NbaTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

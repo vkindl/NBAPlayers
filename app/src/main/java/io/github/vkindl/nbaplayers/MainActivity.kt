@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import io.github.vkindl.nbaplayers.navigation.AppNavGraph
-import io.github.vkindl.nbaplayers.ui.theme.NBATheme
+import io.github.vkindl.nbaplayers.core.designsystem.theme.NbaTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NBATheme {
+            NbaTheme {
                 AppNavGraph()
             }
         }
