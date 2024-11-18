@@ -11,14 +11,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import io.github.vkindl.nbaplayers.core.designsystem.theme.NbaTheme
 
 @Composable
-fun NbaElevatedCard(
+fun NbaCard(
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit
 ) {
     ElevatedCard(
         modifier = modifier,
         colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer
+            containerColor = MaterialTheme.colorScheme.surface
         ),
         content = content
     )
@@ -26,9 +26,9 @@ fun NbaElevatedCard(
 
 @Preview
 @Composable
-private fun NbaElevatedCardPreview() {
+private fun NbaCardPreview() {
     NbaTheme {
-        NbaElevatedCard {
+        NbaCard {
             Text(text = "Elevated Card")
         }
     }

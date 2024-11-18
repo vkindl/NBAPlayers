@@ -7,7 +7,6 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -20,7 +19,7 @@ import io.github.vkindl.nbaplayers.core.designsystem.theme.NbaTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NbaCenterTopAppBar(
+fun NbaTopAppBar(
     title: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     navigationIcon: @Composable () -> Unit = {}
@@ -30,23 +29,6 @@ fun NbaCenterTopAppBar(
         modifier = modifier,
         navigationIcon = navigationIcon,
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        )
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun NbaLargeTopAppBar(
-    title: @Composable () -> Unit,
-    modifier: Modifier = Modifier,
-    navigationIcon: @Composable () -> Unit = {}
-) {
-    LargeTopAppBar(
-        title = title,
-        modifier = modifier,
-        navigationIcon = navigationIcon,
-        colors = TopAppBarDefaults.largeTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         )
     )
@@ -73,24 +55,7 @@ fun BackIconButton(
 @Composable
 private fun NbaCenterTopAppBarPreview() {
     NbaTheme {
-        NbaCenterTopAppBar(
-            title = { Text(text = "NBA Players") },
-            navigationIcon = {
-                Icon(
-                    Icons.AutoMirrored.Default.ArrowBack,
-                    contentDescription = null
-                )
-            }
-        )
-    }
-}
-
-@Preview
-@Preview(uiMode = UI_MODE_NIGHT_YES)
-@Composable
-private fun NbaLargeTopAppBarPreview() {
-    NbaTheme {
-        NbaLargeTopAppBar(
+        NbaTopAppBar(
             title = { Text(text = "NBA Players") },
             navigationIcon = {
                 Icon(
