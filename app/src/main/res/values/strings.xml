@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">NBA Players</string>
+
+    <!-- Players Screen -->
+    <string name="players_screen_title">NBA Players</string>
+    <string name="players_screen_position">Position: %s</string>
+
+    <!-- Player Detail Screen -->
+    <string name="player_detail_screen_title">Player Details</string>
+    <string name="player_detail_screen_number">Number</string>
+    <string name="player_detail_screen_position">Position</string>
+    <string name="player_detail_screen_nationality">Nationality</string>
+    <string name="player_detail_screen_height">Height</string>
+    <string name="player_detail_screen_height_value">%s ft</string>
+    <string name="player_detail_screen_weight">Weight</string>
+    <string name="player_detail_screen_weight_value">%s lb</string>
+    <string name="player_detail_screen_draft_year">Draft Year</string>
+    <string name="player_detail_screen_player_information">Player Information</string>
+    <string name="player_detail_screen_team_information">Team Information</string>
+
+    <!-- Team Screen -->
+    <string name="team_screen_title">Team Details</string>
+    <string name="team_screen_conference">Conference</string>
+    <string name="team_screen_division">Division</string>
+    <string name="team_screen_city">City</string>
+
+    <!-- Common Content Description -->
+    <string name="common_content_description_back">Back</string>
+
 </resources>
