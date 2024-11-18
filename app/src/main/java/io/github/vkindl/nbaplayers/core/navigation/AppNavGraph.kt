@@ -1,16 +1,16 @@
-package io.github.vkindl.nbaplayers.navigation
+package io.github.vkindl.nbaplayers.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import io.github.vkindl.nbaplayers.navigation.Destination.PlayerDetail
-import io.github.vkindl.nbaplayers.navigation.Destination.Players
-import io.github.vkindl.nbaplayers.navigation.Destination.Team
-import io.github.vkindl.nbaplayers.ui.playerdetail.PlayerDetailScreen
-import io.github.vkindl.nbaplayers.ui.players.PlayersScreen
-import io.github.vkindl.nbaplayers.ui.team.TeamScreen
+import io.github.vkindl.nbaplayers.core.navigation.Destination.PlayerDetail
+import io.github.vkindl.nbaplayers.core.navigation.Destination.Players
+import io.github.vkindl.nbaplayers.core.navigation.Destination.Team
+import io.github.vkindl.nbaplayers.feature.playerdetail.ui.PlayerDetailScreen
+import io.github.vkindl.nbaplayers.feature.players.ui.PlayersScreen
+import io.github.vkindl.nbaplayers.feature.team.ui.TeamScreen
 
 @Composable
 fun AppNavGraph(navController: NavHostController = rememberNavController()) {
@@ -18,7 +18,7 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
         composable<Players> {
             PlayersScreen(
                 onPlayerClick = {
-                    navController.navigate(PlayerDetail)
+                    navController.navigate(PlayerDetail(id = it))
                 }
             )
         }
@@ -28,7 +28,7 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
                     navController.navigateUp()
                 },
                 onTeamClick = {
-                    navController.navigate(Team)
+                    navController.navigate(Team(id = it))
                 }
             )
         }
