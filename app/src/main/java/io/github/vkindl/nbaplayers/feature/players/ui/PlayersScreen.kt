@@ -37,21 +37,20 @@ fun PlayersScreen(
     val items = viewModel.players.collectAsLazyPagingItems()
 
     Content(
-        pager = items,
+        pagingItems = items,
         onPlayerClick = onPlayerClick
     )
 }
 
 @Composable
 private fun Content(
-    pager: LazyPagingItems<Player>,
+    pagingItems: LazyPagingItems<Player>,
     onPlayerClick: (Int) -> Unit
 ) {
     Scaffold(
         topBar = {
-            NbaTopAppBar(title = {
-                Text(text = stringResource(R.string.players_screen_title))
-            })
+            NbaTopAppBar(
+                title = { Text(text = stringResource(R.string.players_screen_title)) })
         }
     ) { innerPadding ->
         Column(
@@ -59,13 +58,13 @@ private fun Content(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            when (val refresh = pager.loadState.refresh) {
+            when (val refresh = pagingItems.loadState.refresh) {
                 is LoadState.Loading -> FullScreenLoadingIndicator()
                 is LoadState.Error -> {
                     ErrorContent(errorMessage = refresh.error.localizedMessage.orEmpty())
                 }
                 is LoadState.NotLoading -> PlayerListContent(
-                    pager = pager,
+                    pagingItems = pagingItems,
                     onPlayerClick = onPlayerClick
                 )
             }
@@ -76,12 +75,12 @@ private fun Content(
 @Composable
 private fun PlayerListContent(
     modifier: Modifier = Modifier,
-    pager: LazyPagingItems<Player>,
+    pagingItems: LazyPagingItems<Player>,
     onPlayerClick: (Int) -> Unit
 ) {
     LazyColumn(modifier = modifier) {
-        items(pager.itemCount) {
-            val player = pager[it]
+        items(pagingItems.itemCount) {
+            val player = pagingItems[it]
             if (player != null) {
                 PlayerListItem(
                     player = player,
@@ -89,7 +88,7 @@ private fun PlayerListContent(
                 )
             }
         }
-        if (pager.loadState.append is LoadState.Loading) {
+        if (pagingItems.loadState.append is LoadState.Loading) {
             item {
                 LoadingIndicator()
             }
