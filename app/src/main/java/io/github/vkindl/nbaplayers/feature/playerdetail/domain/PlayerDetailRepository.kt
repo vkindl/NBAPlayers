@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PlayerDetailRepository {
 
-    fun getPlayerById(id: Int): Flow<Result<Player>>
+    fun getPlayerDetail(id: Int): Flow<Result<Player>>
 }

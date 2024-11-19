@@ -32,6 +32,7 @@ import io.github.vkindl.nbaplayers.core.designsystem.component.NbaTopAppBar
 import io.github.vkindl.nbaplayers.core.designsystem.component.NbaImage
 import io.github.vkindl.nbaplayers.core.designsystem.theme.NbaTheme
 import io.github.vkindl.nbaplayers.core.domain.model.Team
+import io.github.vkindl.nbaplayers.feature.team.ui.TeamLogoMapper.toLogoResId
 import io.github.vkindl.nbaplayers.feature.team.ui.TeamViewModel.TeamUiState
 import org.koin.androidx.compose.koinViewModel
 

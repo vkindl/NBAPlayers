@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 class PlayerDetailRepositoryImpl(
     private val api: NbaApi
 ) : PlayerDetailRepository {
-    override fun getPlayerById(id: Int): Flow<Result<Player>> {
+    override fun getPlayerDetail(id: Int): Flow<Result<Player>> {
         return flow {
             runCatching { api.getPlayerById(id) }.fold(
                 onSuccess = { emit(Result.Success(it.player.toDomain())) },

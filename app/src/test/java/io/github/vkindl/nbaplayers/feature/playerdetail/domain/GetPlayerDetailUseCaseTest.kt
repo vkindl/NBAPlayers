@@ -12,19 +12,19 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
-class GetPlayerUseCaseTest {
+class GetPlayerDetailUseCaseTest {
 
     private val repository: PlayerDetailRepository = mockk()
-    private lateinit var sut: GetPlayerUseCase
+    private lateinit var sut: GetPlayerDetailUseCase
 
     @Before
     fun setUp() {
-        sut = GetPlayerUseCase(repository = repository)
+        sut = GetPlayerDetailUseCase(repository = repository)
     }
 
     @Test
     fun `should return player details from repository`() = runTest {
-        coEvery { repository.getPlayerById(ANY_ID) } returns flowOf(Result.Success(expectedPlayer))
+        coEvery { repository.getPlayerDetail(ANY_ID) } returns flowOf(Result.Success(expectedPlayer))
 
         val result = sut(ANY_ID).first()
 
@@ -33,7 +33,7 @@ class GetPlayerUseCaseTest {
 
     @Test
     fun `should return error from repository`() = runTest {
-        coEvery { repository.getPlayerById(ANY_ID) } returns flowOf(Result.Error(ERROR_MESSAGE))
+        coEvery { repository.getPlayerDetail(ANY_ID) } returns flowOf(Result.Error(ERROR_MESSAGE))
 
         val result = sut(ANY_ID).first()
 

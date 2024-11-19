@@ -35,7 +35,7 @@ import io.github.vkindl.nbaplayers.core.designsystem.theme.NbaTheme
 import io.github.vkindl.nbaplayers.core.domain.model.Player
 import io.github.vkindl.nbaplayers.core.domain.model.Team
 import io.github.vkindl.nbaplayers.feature.playerdetail.ui.PlayerDetailViewModel.PlayerDetailUiState
-import io.github.vkindl.nbaplayers.feature.team.ui.toLogoResId
+import io.github.vkindl.nbaplayers.feature.team.ui.TeamLogoMapper.toLogoResId
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
