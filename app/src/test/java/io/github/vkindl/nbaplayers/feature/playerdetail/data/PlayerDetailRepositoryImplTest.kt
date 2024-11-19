@@ -29,7 +29,7 @@ class PlayerDetailRepositoryImplTest {
     fun `should return player details`() = runTest {
         coEvery { api.getPlayerById(1) } returns playerResponse
 
-        val result = sut.getPlayerById(1).first()
+        val result = sut.getPlayerDetail(1).first()
 
         assertEquals(Result.Success(expectedPlayer), result)
     }
@@ -38,7 +38,7 @@ class PlayerDetailRepositoryImplTest {
     fun `should return error when api call fails`() = runTest {
         coEvery { api.getPlayerById(1) } throws Exception("Error message")
 
-        val result = sut.getPlayerById(1).first()
+        val result = sut.getPlayerDetail(1).first()
 
         assertEquals(Result.Error("Error message"), result)
     }
