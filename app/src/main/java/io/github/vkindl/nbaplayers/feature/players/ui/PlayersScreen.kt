@@ -26,7 +26,7 @@ import io.github.vkindl.nbaplayers.core.designsystem.component.LoadingIndicator
 import io.github.vkindl.nbaplayers.core.designsystem.component.NbaImage
 import io.github.vkindl.nbaplayers.core.designsystem.component.NbaTopAppBar
 import io.github.vkindl.nbaplayers.core.domain.model.Player
-import io.github.vkindl.nbaplayers.feature.team.ui.toLogoResId
+import io.github.vkindl.nbaplayers.feature.team.ui.TeamLogoMapper.toLogoResId
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -34,10 +34,10 @@ fun PlayersScreen(
     viewModel: PlayersViewModel = koinViewModel(),
     onPlayerClick: (Int) -> Unit
 ) {
-    val items = viewModel.players.collectAsLazyPagingItems()
+    val pagingItems = viewModel.playersPagingData.collectAsLazyPagingItems()
 
     Content(
-        pagingItems = items,
+        pagingItems = pagingItems,
         onPlayerClick = onPlayerClick
     )
 }
@@ -89,9 +89,7 @@ private fun PlayerListContent(
             }
         }
         if (pagingItems.loadState.append is LoadState.Loading) {
-            item {
-                LoadingIndicator()
-            }
+            item { LoadingIndicator() }
         }
     }
 }

@@ -4,7 +4,10 @@ import androidx.paging.PagingData
 import io.github.vkindl.nbaplayers.core.domain.model.Player
 import kotlinx.coroutines.flow.Flow
 
-interface PlayerRepository {
-
-    fun getPlayers(): Flow<PagingData<Player>>
+class GetPlayersUseCase(
+    private val repository: PlayerRepository
+) {
+    operator fun invoke(): Flow<PagingData<Player>> {
+        return repository.getPlayers()
+    }
 }
