@@ -7,21 +7,21 @@ import androidx.navigation.toRoute
 import io.github.vkindl.nbaplayers.core.Result
 import io.github.vkindl.nbaplayers.core.navigation.Destination
 import io.github.vkindl.nbaplayers.core.domain.model.Team
-import io.github.vkindl.nbaplayers.feature.team.domain.GetTeamUseCase
+import io.github.vkindl.nbaplayers.feature.team.domain.GetTeamDetailUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 class TeamViewModel(
-    getTeamUseCase: GetTeamUseCase,
+    getTeamDetailUseCase: GetTeamDetailUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val teamId = savedStateHandle.toRoute<Destination.Team>().id
 
     val state: StateFlow<TeamUiState> =
-        getTeamUseCase(id = teamId).map { it.toUiState() }
+        getTeamDetailUseCase(id = teamId).map { it.toUiState() }
             .stateIn(
                 viewModelScope,
                 SharingStarted.WhileSubscribed(5000),

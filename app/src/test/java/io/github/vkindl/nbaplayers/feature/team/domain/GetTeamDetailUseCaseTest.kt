@@ -11,14 +11,14 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
-class GetTeamUseCaseTest {
+class GetTeamDetailUseCaseTest {
 
     private val repository: TeamRepository = mockk()
-    private lateinit var sut: GetTeamUseCase
+    private lateinit var sut: GetTeamDetailUseCase
 
     @Before
     fun setUp() {
-        sut = GetTeamUseCase(repository = repository)
+        sut = GetTeamDetailUseCase(repository = repository)
     }
 
     @Test

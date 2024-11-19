@@ -4,7 +4,7 @@ import io.github.vkindl.nbaplayers.core.Result
 import io.github.vkindl.nbaplayers.core.domain.model.Team
 import kotlinx.coroutines.flow.Flow
 
-class GetTeamUseCase(
+class GetTeamDetailUseCase(
     private val repository: TeamRepository
 ) {
     operator fun invoke(id: Int): Flow<Result<Team>> {
