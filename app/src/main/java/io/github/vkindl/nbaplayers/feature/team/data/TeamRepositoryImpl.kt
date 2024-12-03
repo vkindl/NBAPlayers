@@ -9,12 +9,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class TeamRepositoryImpl(
-    private val api: NbaApi
+    private val nbaApi: NbaApi
 ) : TeamRepository {
 
     override fun getTeamDetail(id: Int): Flow<Result<Team>> {
         return flow {
-            runCatching { api.getTeamById(id) }.fold(
+            runCatching { nbaApi.getTeamById(id) }.fold(
                 onSuccess = { emit(Result.Success(it.team.toDomain())) },
                 onFailure = { emit(Result.Error(it.localizedMessage)) }
             )
