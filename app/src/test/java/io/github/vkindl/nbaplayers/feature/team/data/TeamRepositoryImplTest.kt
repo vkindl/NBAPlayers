@@ -15,17 +15,19 @@ import org.junit.Test
 
 class TeamRepositoryImplTest {
 
-    private val api: NbaApi = mockk()
+    private lateinit var nbaApi: NbaApi
     private lateinit var sut: TeamRepositoryImpl
 
     @Before
     fun setUp() {
-        sut = TeamRepositoryImpl(api = api)
+        nbaApi = mockk()
+
+        sut = TeamRepositoryImpl(nbaApi = nbaApi)
     }
 
     @Test
     fun `should return success result when api call is successful`() = runTest {
-        coEvery { api.getTeamById(1) } returns TeamResponseDto(team = teamDto)
+        coEvery { nbaApi.getTeamById(1) } returns TeamResponseDto(team = teamDto)
 
         val result = sut.getTeamDetail(1).first()
 
@@ -34,7 +36,7 @@ class TeamRepositoryImplTest {
 
     @Test
     fun `should return error result when api call fails`() = runTest {
-        coEvery { api.getTeamById(1) } throws exception
+        coEvery { nbaApi.getTeamById(1) } throws exception
 
         val result = sut.getTeamDetail(1).first()
 

@@ -17,36 +17,41 @@ import org.junit.Test
 
 class PlayerDetailRepositoryImplTest {
 
-    private val api: NbaApi = mockk()
+    private lateinit var nbaApi: NbaApi
+
     private lateinit var sut: PlayerDetailRepositoryImpl
 
     @Before
     fun setUp() {
-        sut = PlayerDetailRepositoryImpl(api = api)
+        nbaApi = mockk()
+
+        sut = PlayerDetailRepositoryImpl(nbaApi = nbaApi)
     }
 
     @Test
-    fun `should return player details`() = runTest {
-        coEvery { api.getPlayerById(1) } returns playerResponse
+    fun `should return player details when api call is successful`() = runTest {
+        coEvery { nbaApi.getPlayerById(ANY_PLAYER_ID) } returns playerResponse
 
-        val result = sut.getPlayerDetail(1).first()
+        val result = sut.getPlayerDetail(ANY_PLAYER_ID).first()
 
         assertEquals(Result.Success(expectedPlayer), result)
     }
 
     @Test
     fun `should return error when api call fails`() = runTest {
-        coEvery { api.getPlayerById(1) } throws Exception("Error message")
+        coEvery { nbaApi.getPlayerById(ANY_PLAYER_ID) } throws Exception(ERROR_MESSAGE)
 
-        val result = sut.getPlayerDetail(1).first()
+        val result = sut.getPlayerDetail(ANY_PLAYER_ID).first()
 
-        assertEquals(Result.Error("Error message"), result)
+        assertEquals(Result.Error(ERROR_MESSAGE), result)
     }
 
     private companion object {
+        const val ANY_PLAYER_ID = 1
+        const val ERROR_MESSAGE = "Error message"
         val playerResponse = PlayerResponseDto(
             player = PlayerDto(
-                id = 1,
+                id = ANY_PLAYER_ID,
                 firstName = "LeBron",
                 lastName = "James",
                 height = "6-9",
@@ -70,7 +75,7 @@ class PlayerDetailRepositoryImplTest {
             )
         )
         val expectedPlayer = Player(
-            id = 1,
+            id = ANY_PLAYER_ID,
             fullName = "LeBron James",
             position = "G",
             jerseyNumber = "23",
