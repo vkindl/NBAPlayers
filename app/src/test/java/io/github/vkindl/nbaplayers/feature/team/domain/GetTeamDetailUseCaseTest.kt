@@ -13,30 +13,42 @@ import org.junit.Test
 
 class GetTeamDetailUseCaseTest {
 
-    private val repository: TeamRepository = mockk()
+    private lateinit var teamRepository: TeamRepository
+
     private lateinit var sut: GetTeamDetailUseCase
 
     @Before
     fun setUp() {
-        sut = GetTeamDetailUseCase(repository = repository)
+        teamRepository = mockk()
+
+        sut = GetTeamDetailUseCase(teamRepository = teamRepository)
     }
 
     @Test
-    fun `should return team details from repository`() = runTest {
-        coEvery { repository.getTeamDetail(ANY_ID) } returns flowOf(Result.Success(expectedTeam))
+    fun `should return team details from repository on invoke`() = runTest {
+        coEvery { teamRepository.getTeamDetail(ANY_ID) } returns flowOf(Result.Success(expectedTeam))
 
-        val result = sut(ANY_ID).first()
+        val result = sut.invoke(ANY_ID).first()
 
         assertEquals(Result.Success(expectedTeam), result)
     }
 
     @Test
-    fun `should return error from repository`() = runTest {
-        coEvery { repository.getTeamDetail(ANY_ID) } returns flowOf(Result.Error(ERROR_MESSAGE))
+    fun `should return error from repository on invoke`() = runTest {
+        coEvery { teamRepository.getTeamDetail(ANY_ID) } returns flowOf(Result.Error(ERROR_MESSAGE))
 
-        val result = sut(ANY_ID).first()
+        val result = sut.invoke(ANY_ID).first()
 
         assertEquals(Result.Error(ERROR_MESSAGE), result)
+    }
+
+    @Test
+    fun `should return loading from repository on invoke`() = runTest {
+        coEvery { teamRepository.getTeamDetail(ANY_ID) } returns flowOf(Result.Loading)
+
+        val result = sut.invoke(ANY_ID).first()
+
+        assertEquals(Result.Loading, result)
     }
 
     private companion object {
